@@ -1,0 +1,113 @@
+{%extends "base.html" %}
+{%block content%}
+{% load static %}
+
+<section class="landingPage">
+	
+	<div class="logoContainer">
+		
+		<img src="{% static 'Icon awesome-pills.png' %}" ><span class="logoText"> <a href = "{%url 'home' %}">HOME </a> </span>
+
+
+	</div>
+
+<div class="mainContainer">
+	
+
+<div class="imageContainer"> 
+
+<img src="{% static 'Rectangle 1.png' %}"  class="back">
+<img src="{% static 'Group 1.png' %}" class="characTer">
+
+</div>
+
+<div class="textContainer"> 
+
+<p class="headOne one">FILTER</p>
+<p class="headOne two">THE FAKE</p>
+
+
+<p class="mainText">Upload an Image to check for counterfeit medicines. </p>
+</div>
+
+<div class="formHolder"> 
+
+
+
+<form method="POST" action="{% url 'check' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+
+
+	<input type="text" name="title"  class="text" id="text" placeholder="Medicine Name">	
+  	
+  	<label class="custom-file-upload">
+      <input type="file" name="image" />
+      <img src="{% static 'Icon awesome-camera.png' %}" >
+	  </label>
+
+    <input class="primary" type="submit" value="Check if Fake!" />
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+</section>
+
+<section class="imageSection">
+
+  {% for medicine in medicines.all %}
+
+	
+<div class="mainWrapper">
+	
+
+<div class="uploadedImage">
+
+<p class="headingMain">Your Image</p>
+<img src = "{{ medicine.image.url }}" class="mainImage">	
+<img src = "{% static 'Rectangle 18.png' %}" class="backgroundDesign">
+
+</div>
+
+{%endfor%}
+
+<div class="originalImage">
+
+<p class="headingMain">Our Image</p>
+<img src = "{% static 'detectionImage.jpg' %}" class="mainImage">	
+<img src = "{% static 'Rectangle 18.png' %}" class="backgroundDesign">
+
+
+
+</div>
+
+{%for medicine in medicines.all %}
+<div class="statsDiv">
+
+<p class="percent">{{medicine.percentage}}%</p>
+<p class="accurate">ACCURATE</p>
+
+<ul class="list">
+	
+<li>{{medicine.Alignment}}</li>
+<li>{{medicine.Colour}}</li>
+<li>{{medicine.Rx}}</li>
+<li>{{medicine.Spelling}}</li>
+
+</ul>
+
+</div>
+
+{%endfor%}
+
+
+</div>
+
+
+{%endblock %}

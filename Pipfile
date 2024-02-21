@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+pillow = "*"
+opencv-python = "==4.5.1.48"
+pipenv = "*"
+install = "*"
+matplotlib = "*"
+pytesseract = "*"
+pyspellchecker = "*"
+scikit-image = "*"
+imutils = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
